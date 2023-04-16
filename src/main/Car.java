@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class Car extends Thread implements Comparable<Car>{
 
-    private boolean finished;
     private int completedlaps;
     private int totalTime;
     private String name;

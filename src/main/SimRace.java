@@ -1,19 +1,18 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+
 
 public class SimRace {
 
     private final int anzahlAutos;
     private final int streckenLänge;
-    private Queue<Car> track;
+    private List<Car>  track;
 
     public SimRace(int anzahl, int länge){
         anzahlAutos = anzahl;
         streckenLänge = länge;
-        track = new LinkedList<>();
+        track = new LinkedList<Car>();
     }
 
     public void startRace(){
@@ -39,7 +38,9 @@ public class SimRace {
             auto.setPlatzierung(i+1 + ". Platz: ");
         }
 
-
-        track.stream().sorted(Car::compareTo).forEach(wagen -> System.out.println(wagen.toString()));
+        for(Object car :  autos){
+            Car auto = (Car) car;
+            System.out.println(auto.toString());
+        }
     }
 }
