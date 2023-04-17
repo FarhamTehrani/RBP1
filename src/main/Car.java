@@ -7,32 +7,30 @@ public class Car extends Thread implements Comparable<Car>{
     private String name;
     private int neededLaps;
     private String platzierung;
+    private int time;
 
     public Car(int carnumber,int neededLaps) {
         this.neededLaps = neededLaps;
         name = "Wagen " + carnumber;
-      }
-
-
+    }
 
     @Override
     public void run() {
         while(completedlaps < neededLaps){
-            drive();
+            time = new Random().nextInt(101);
+            totalTime += time;
+            completedlaps++;
+            try {
+                sleep(time);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } 
     }
 
-    public void drive(){
-        int time = new Random().nextInt(101);
-        totalTime += time;
-        completedlaps++;
-        try {
-            sleep(time);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+    public int getTime(){
+        return time;
     }
 
     public int getTotalTime() {
@@ -43,8 +41,6 @@ public class Car extends Thread implements Comparable<Car>{
     public int compareTo(Car o) {
         return Integer.compare(getTotalTime(), o.getTotalTime());
     }
-
-
 
     @Override
     public String toString() {
